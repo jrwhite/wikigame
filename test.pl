@@ -7,16 +7,21 @@ $mw->{config}->{api_url} = 'http://en.wikipedia.org/w/api.php';
 
 my $titles = $mw->api( {
     action => 'query',
-    titles => 'Mark Twain',
-    prop => 'langlinks',} )
+    titles => 'Albert Einstein',
+    prop => 'links',
+    pllimit => 'max'} )
     || die $mw->{error}->{code} . ': ' . $mw->{error}->{details};
 
-my ($pageid,$langlinks) = each ( %{ $titles->{query}->{pages} } );
-
+my ($ns,$links) = each ( %{ $titles->{query}->{pages} } );
 print "success!\n";
 
-foreach ( @{ $langlinks->{langlinks} } ) {
-   print "$_->{'*'}\n";
+#creates array of hash references
+my @hashrefs = @{  $links->{'links'} }; ;
+
+foreach (@hashrefs){
+    #$_ is hashref
+    my %hash = %$_;
+    print $hash{title}, "\n";
 }
 
 

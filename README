@@ -1,1 +1,9 @@
+Hi!
+
 This is a script to find the least number of clicks between any two wikipedia pages.
+
+Run it with command  "perl test.pl"
+So far, all it does is just list all the links in any given page :(
+
+#require Wikpedia::API module
+#requires Perl 5 
